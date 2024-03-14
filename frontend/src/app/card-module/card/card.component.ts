@@ -11,4 +11,10 @@ import { CardInputComponent } from '../card-input/card-input.component';
 })
 export class CardComponent {
 
+  cardList: { Nom: string | null; Code: string | null; CCV: string | null; Date: string | null; }[] = [];
+
+  onCardListChange(cardList: { Nom: string | null; Code: string | null; CCV: string | null; Date: string | null; }[]) {
+    this.cardList = cardList;
+  }
+
 }

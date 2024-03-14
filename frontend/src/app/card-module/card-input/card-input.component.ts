@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -10,6 +10,8 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './card-input.component.css'
 })
 export class CardInputComponent {
+  @Output() cardListChange = new EventEmitter<{ Nom: string | null; Code: string | null; CCV: string | null; Date: string | null; }[]>();
+
   // Reactive form for card input
   cardForm = new FormGroup({
     Nom: new FormControl(''),
@@ -29,6 +31,7 @@ export class CardInputComponent {
       Date: this.cardForm.value.Date || null,
     };
     this.cardList.push(card);
+    this.cardListChange.emit(this.cardList);
     this.onReset();
     console.log(this.cardList);
   }
